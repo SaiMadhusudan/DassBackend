@@ -22,6 +22,13 @@ doctorRouter.post('/', async (request, response) => {
     const passwordHash = await bcrypt.hash(body.PasswordHash, saltRounds);
     const contactHash = await bcrypt.hash(body.Contact, saltRounds);
     const emailHash = await bcrypt.hash(body.EmailId, saltRounds);
+    const regcode = body.RegCode;
+
+    if (regcode !== process.env.DOCTORREGCODE) {
+        return response.status(401).json({
+            error: 'Invalid Registration Code'
+        })
+    }
 
     const doctor = new Doctor({
         Name: body.Name,
