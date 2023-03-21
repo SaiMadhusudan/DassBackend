@@ -4,6 +4,7 @@ const Doctor = require('../models/doctor');
 const Appointment = require('../models/appointment');
 const { request } = require('express');
 const { response } = require('express');
+require('dotenv').config()
 
 appointmentRouter.get('/', async (request, response) => {
     const appointments = await Appointment.find({}).populate('doctor', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 }).populate('patient', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 });

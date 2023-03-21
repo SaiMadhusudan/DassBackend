@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator')
 
 const patientSchema = new mongoose.Schema({
     Name: String,

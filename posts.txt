@@ -1,0 +1,8 @@
+{http://localhost:3001/api/patients/
+
+    "Name":"Patient1",
+    "Contact":"123456",
+    "PasswordHash":"saimadhu",
+    "EmailId":"sai@gmail.com",
+    "RegCode":"1234"
+}
