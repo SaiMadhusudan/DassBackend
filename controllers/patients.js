@@ -8,12 +8,12 @@ const { response } = require('express');
 require('dotenv').config()
 
 patientRouter.get('/', async (request, response) => {
-    const patients = await Patient.find({}).populate('Doctors', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 });
+    const patients = await Patient.find({}).populate('Doctors', { Name: 1, EmailId: 1,  BasicDetails: 1 });
     response.json(patients);
 })
 
 patientRouter.get('/:id', async (request, response) => {
-    const patient = await Patient.findById(request.params.id).populate('Doctors', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 });
+    const patient = await Patient.findById(request.params.id).populate('Doctors', { Name: 1, EmailId: 1, BasicDetails: 1 });
     response.json(patient);
 })
 
