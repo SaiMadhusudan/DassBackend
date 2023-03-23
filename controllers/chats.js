@@ -64,8 +64,3 @@ chatRouter.post('/addmessage', async (request, response) => {
 });
 
 module.exports = chatRouter;
-
-
-
-
-

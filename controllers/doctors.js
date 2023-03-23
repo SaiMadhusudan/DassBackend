@@ -9,12 +9,12 @@ require('dotenv').config()
 
 
 doctorRouter.get('/', async (request, response) => {
-    const doctors = await Doctor.find({}).populate('Patient', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 });
+    const doctors = await Doctor.find({}).populate('Patient');
     response.json(doctors);
 })
 
 doctorRouter.get('/:id', async (request, response) => {
-    const doctor = await Doctor.findById(request.params.id).populate('Patient', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 });
+    const doctor = await Doctor.findById(request.params.id).populate('Patient');
     response.json(doctor);
 })
 

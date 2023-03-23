@@ -7,14 +7,17 @@ const { response } = require('express');
 require('dotenv').config()
 
 appointmentRouter.get('/', async (request, response) => {
-    const appointments = await Appointment.find({}).populate('doctor', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 }).populate('patient', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 });
+    const appointments = await Appointment.find({}).populate('doctor').populate('patient');
     response.json(appointments);
 });
 
 appointmentRouter.get('/:id', async (request, response) => {
-    const appointment = await Appointment.findById(request.params.id).populate('doctor', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 }).populate('patient', { Name: 1, EmailId: 1, Contact: 1, BasicDetails: 1 });
+    const appointment = await Appointment.findById(request.params.id).populate('doctor').populate('patient');
     response.json(appointment);
 });
+
+// get all appointments for a doctor
+// get all appointments for a patient
 
 appointmentRouter.post('/pending', async (request, response) => {
     const body = request.body;
