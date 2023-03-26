@@ -51,6 +51,8 @@ chatRouter.post('/addmessage', async (request, response) => {
     const whosent = body.whosent;
 
     const chat = await Chat.findById(chatId);
+    console.log(chat);
+    // need to check if messages is empty
     chat.messages.unshift({
         user: {
             _id: whosent
