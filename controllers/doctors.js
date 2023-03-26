@@ -41,4 +41,22 @@ doctorRouter.post('/', async (request, response) => {
     response.json(savedDoctor);
 })
 
+doctorRouter.post('/request', async (request, response) => {
+    const body = request.body;
+    const doctorId = body.DoctorId;
+    const patientId = body.PatientId;
+    const doctor = await Doctor.findById(doctorId);
+
+    if (doctor.Requests.includes(patientId)) {
+        return response.status(401).json({
+            error: 'Request already sent'
+        })
+    }
+    else {
+        doctor.Requests = doctor.Requests.concat(patientId);
+        await doctor.save();
+        response.json(doctor);
+    }
+})
+
 module.exports = doctorRouter;

@@ -9,6 +9,10 @@ const patientSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Doctor'
 
+    }],
+    Requests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Doctor'
     }]
 })
 

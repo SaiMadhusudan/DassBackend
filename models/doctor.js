@@ -8,6 +8,10 @@ const doctorSchema = new mongoose.Schema({
     Patients: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Patient'
+    }],
+    Requests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Patient'
     }]
 })
 
