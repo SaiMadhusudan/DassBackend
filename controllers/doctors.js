@@ -59,4 +59,24 @@ doctorRouter.post('/request', async (request, response) => {
     }
 })
 
+doctorRouter.post('/accept', async (request, response) => {
+    const body = request.body;
+    const doctorId = body.DoctorId;
+    const patientId = body.PatientId;
+    const doctor = await Doctor.findById(doctorId);
+
+    if (doctor.Requests.includes(patientId)) {
+        doctor.Requests = doctor.Requests.filter(id => id.toString() !== patientId.toString());
+        doctor.Patients = doctor.Patients.concat(patientId);
+        await doctor.save();
+        response.json(doctor);
+    }
+    else {
+        return response.status(401).json({
+            error: 'Request not sent'
+        })
+    }
+})
+
+
 module.exports = doctorRouter;
