@@ -13,7 +13,7 @@ patientRouter.get('/', async (request, response) => {
 })
 
 patientRouter.get('/:id', async (request, response) => {
-    const patient = await Patient.findById(request.params.id).populate('Doctors', { Name: 1, EmailId: 1, BasicDetails: 1 });
+    const patient = await Patient.findById(request.params.id).populate('Doctors').populate('Requests');
     response.json(patient);
 })
 
