@@ -20,3 +20,12 @@
     "DoctorId":"641c19f6daca2e6e4a6d6e0f",
     "PatientId":"64156ef12427504d934d1fbd"
 }
+
+{
+    http://localhost:3001/api/appointments/
+
+    "doctor":"641c19f6daca2e6e4a6d6e0f",
+    "patient":"64156ef12427504d934d1fbd",
+    "status": "pending",
+    "Date":"Wed Mar 29 2023 09:49:23 GMT+0530 (India Standard Time)"
+}

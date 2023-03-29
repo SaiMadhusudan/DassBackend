@@ -17,7 +17,17 @@ appointmentRouter.get('/:id', async (request, response) => {
 });
 
 // get all appointments for a doctor
+appointmentRouter.get('/doctor/:id', async (request, response) => {
+    const appointments = await Appointment.find({ doctor: request.params.id }).populate('doctor').populate('patient');
+    response.json(appointments);
+});
+
 // get all appointments for a patient
+appointmentRouter.get('/patient/:id', async (request, response) => {
+    const appointments = await Appointment.find({ patient: request.params.id }).populate('doctor').populate('patient');
+    response.json(appointments);
+});
+
 
 appointmentRouter.post('/pending', async (request, response) => {
     const body = request.body;
@@ -25,8 +35,7 @@ appointmentRouter.post('/pending', async (request, response) => {
         doctor: body.doctor,
         patient: body.patient,
         status: 'pending',
-        start : body.start,
-        end : body.end
+        Time : body.Date
     });
     const savedAppointment = await appointment.save();
     response.json(savedAppointment);
