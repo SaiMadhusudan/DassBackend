@@ -29,41 +29,51 @@ appointmentRouter.get('/patient/:id', async (request, response) => {
 });
 
 
-appointmentRouter.post('/pending', async (request, response) => {
+appointmentRouter.post('/', async (request, response) => {
     const body = request.body;
     const appointment = new Appointment({
         doctor: body.doctor,
         patient: body.patient,
-        status: 'pending',
-        Time : body.Date
+        status: 'Pending',
+        Time: body.Date
     });
     const savedAppointment = await appointment.save();
     response.json(savedAppointment);
 });
 
-appointmentRouter.post('/accepted', async (request, response) => {
+appointmentRouter.post('/Pending', async (request, response) => {
     const body = request.body;
 
     const appointment = await Appointment.findById(body.id);
-    appointment.status = 'accepted';
+    appointment.status = 'Pending';
     const savedAppointment = await appointment.save();
     response.json(savedAppointment);
 });
 
-appointmentRouter.post('/rejected', async (request, response) => {
+
+appointmentRouter.post('/Accepted', async (request, response) => {
     const body = request.body;
 
     const appointment = await Appointment.findById(body.id);
-    appointment.status = 'rejected';
-    const savedAppointment = await appointment.save();  
+    appointment.status = 'Accepted';
+    const savedAppointment = await appointment.save();
     response.json(savedAppointment);
 });
 
-appointmentRouter.post('/completed', async (request, response) => {
+appointmentRouter.post('/Rejected', async (request, response) => {
     const body = request.body;
 
     const appointment = await Appointment.findById(body.id);
-    appointment.status = 'completed';
+    appointment.status = 'Rejected';
+    const savedAppointment = await appointment.save();
+    response.json(savedAppointment);
+});
+
+appointmentRouter.post('/Completed', async (request, response) => {
+    const body = request.body;
+
+    const appointment = await Appointment.findById(body.id);
+    appointment.status = 'Completed';
     const savedAppointment = await appointment.save();
     response.json(savedAppointment);
 });
