@@ -10,6 +10,7 @@ const doctorRouter = require('./controllers/doctors')
 const chatRouter = require('./controllers/chats')
 const appointmentRouter = require('./controllers/appointments')
 const loginRouter = require('./controllers/login')
+const hospitalRouter = require('./controllers/hospitals') 
 const { Server } = require("socket.io");
 
 
@@ -35,9 +36,10 @@ app.use('/api/doctors', doctorRouter);
 app.use('/api/chats', chatRouter);
 app.use('/api/appointments', appointmentRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/hospitals', require('./controllers/hospitals'));
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
 
 
 
-module.exports = app
+module.exports = app  

@@ -33,9 +33,10 @@ appointmentRouter.post('/', async (request, response) => {
     const body = request.body;
     const appointment = new Appointment({
         doctor: body.doctor,
-        patient: body.patient,
+        patient: body.patient,  
         status: 'Pending',
-        Time: body.Date
+        Date: body.Date,
+        Time: body.Time
     });
     const savedAppointment = await appointment.save();
     response.json(savedAppointment);

@@ -11,7 +11,8 @@ const appointmentSchema = new mongoose.Schema({
         ref: 'Patient',
         required: true
     },
-    Time: { type: Date, required: true },
+    Time: { type: String, required: true },
+    Date: { type: String, required: true },
     status: { type: String,  default: 'Pending' }
 });
 
