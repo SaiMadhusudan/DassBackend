@@ -30,14 +30,13 @@ hospitalRouter.post('/', async (request, response) => {
 hospitalRouter.get('/:name/:date', async (request, response) => {
     const hospital = await Hospital.find({ Name: request.params.name })
     // if date not found it will return status Not Found
-    console.log(request.params.date);
-    console.log(hospital[0].Dates);
     const date = hospital[0].Dates.find(d => d.Date === request.params.date)
     if (date) {
         response.json(date)
+        console.log(date)
     }
     else {
-        response.json({ Status: 'Not Found' })
+        response.json({ status: 'Not Found' })
     }
 }
 );
@@ -45,17 +44,20 @@ hospitalRouter.get('/:name/:date', async (request, response) => {
 
 
 //update a single date in the array
-hospitalRouter.put('/date', async (request, response) => {
+hospitalRouter.post('/:name/:date', async (request, response) => {
     const body = request.body
     const allhospital = await Hospital.find({ Name: body.Name });
     const hospital = allhospital[0]
 
     //if date does not exist I will update other wise I will add
-    const date = hospital.Dates.find(d => d.Date === body.Date)
+    const date = hospital.Dates.find(d => d.Date === request.params.date)
     if (date) {
-        date.Slots = body.Slots
+        date.status= body.status
     } else {
-        hospital.Dates = hospital.Dates.concat(body)
+        hospital.Dates = hospital.Dates.concat({
+            Date: request.params.date,
+            status: body.status
+        })
     }
 
 
